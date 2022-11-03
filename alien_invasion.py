@@ -1,7 +1,7 @@
 import sys
 
 import pygame
-
+bg = pygame.image.load("img\\bg.png")
 
 class AlienInvasion:
     """Класс для управления ресурсами и поведением игры."""
@@ -15,7 +15,8 @@ class AlienInvasion:
         programIcon = pygame.image.load('img\pix.png')
         pygame.display.set_icon(programIcon)
         # Назначение цвета фона.
-        self.bg_color = (20, 250, 70)
+        # self.bg_color = (20, 250, 70)
+
 
     def run_game(self):
         """Запуск основного цикла игры."""
@@ -25,7 +26,8 @@ class AlienInvasion:
                 if event.type == pygame.QUIT:
                     sys.exit()
             # При каждом проходе цикла перерисовывается экран.
-            self.screen.fill(self.bg_color)
+            self.screen.blit(bg, (0, 0))
+            # self.screen.fill(self.bg_color)
             # Отображение последнего прорисованного экрана.
             pygame.display.flip()
 
