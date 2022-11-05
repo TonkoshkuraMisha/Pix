@@ -1,7 +1,8 @@
 import sys
 
 import pygame
-bg = pygame.image.load("img\\bg.png")
+from settings import Settings
+from ship import Ship
 
 class AlienInvasion:
     """Класс для управления ресурсами и поведением игры."""
@@ -9,14 +10,11 @@ class AlienInvasion:
     def __init__(self):
         """Инициализирует игру и создает игровые ресурсы."""
         pygame.init()
+        self.settings = Settings()
 
-        self.screen = pygame.display.set_mode((1200, 800))
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Pix's Adventures")
-        programIcon = pygame.image.load('img\pix.png')
-        pygame.display.set_icon(programIcon)
-        # Назначение цвета фона.
-        # self.bg_color = (20, 250, 70)
-
+        self.ship = Ship(screen)
 
     def run_game(self):
         """Запуск основного цикла игры."""
@@ -26,8 +24,9 @@ class AlienInvasion:
                 if event.type == pygame.QUIT:
                     sys.exit()
             # При каждом проходе цикла перерисовывается экран.
-            self.screen.blit(bg, (0, 0))
-            # self.screen.fill(self.bg_color)
+            # self.screen.blit(bg, (0, 0))
+            self.screen.fill(self.settings.bg_color)
+            self.ship.blitme()
             # Отображение последнего прорисованного экрана.
             pygame.display.flip()
 
