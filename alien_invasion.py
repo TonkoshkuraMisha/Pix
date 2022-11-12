@@ -1,6 +1,8 @@
 import sys
 
 import pygame
+
+import settings
 from settings import Settings
 from ship import Ship
 
@@ -13,8 +15,9 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
 
-        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
-        pygame.display.set_caption("Pix's Adventures")
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height),
+                                              pygame.FULLSCREEN)
+        pygame.display.set_caption("Space Invaders")
         self.ship = Ship(self)
 
     def run_game(self):
@@ -44,6 +47,7 @@ class AlienInvasion:
     def _update_screen(self):
         """Обновляет изображения на экране и отображает новый экран."""
         self.screen.fill(self.settings.bg_color)
+        # self.screen.blit(settings.bg, (0, 0))
         self.ship.blitme()
         pygame.display.flip()
 

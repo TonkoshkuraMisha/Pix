@@ -1,7 +1,7 @@
 import pygame
 
-# bg = pygame.image.load("img\\bg.png")
-programIcon = pygame.image.load('img/pix.png')
+# bg = pygame.image.load("src/img/si_logo.png")
+programIcon = pygame.image.load('src/img/pix.png')
 pygame.display.set_icon(programIcon)
 
 
@@ -13,6 +13,6 @@ class Settings():
         # Параметры экрана
         self.screen_width = 1200
         self.screen_height = 800
-        self.bg_color = (225, 225, 225)
+        self.bg_color = (100, 100, 100)
         # Настройки корабля
         self.ship_speed = 1.5
