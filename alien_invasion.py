@@ -4,6 +4,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 
+
 class AlienInvasion:
     """Класс для управления ресурсами и поведением игры."""
 
@@ -14,7 +15,7 @@ class AlienInvasion:
 
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Pix's Adventures")
-        self.ship = Ship(screen)
+        self.ship = Ship(self)
 
     def run_game(self):
         """Запуск основного цикла игры."""
@@ -33,5 +34,5 @@ class AlienInvasion:
 
 if __name__ == '__main__':
     # Создание экземпляра и запуск игры.
-    pa = AlienInvasion()
-    pa.run_game()
+    ai = AlienInvasion()
+    ai.run_game()
