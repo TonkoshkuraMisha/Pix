@@ -1,10 +1,9 @@
 import sys
 
 import pygame
-
-import settings
 from settings import Settings
 from ship import Ship
+from sound import Sound
 
 
 class AlienInvasion:
@@ -14,11 +13,11 @@ class AlienInvasion:
         """Инициализирует игру и создает игровые ресурсы."""
         pygame.init()
         self.settings = Settings()
-
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height),
                                               pygame.FULLSCREEN)
         pygame.display.set_caption("Space Invaders")
         self.ship = Ship(self)
+        self.sound = Sound()
 
     def run_game(self):
         """Запуск основного цикла игры."""

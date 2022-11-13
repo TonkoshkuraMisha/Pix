@@ -25,7 +25,7 @@ class Ship():
         self.moving_left = False
 
     def update(self):
-         # Обновляется атрибут x, не rect.
+        # Обновляется атрибут x, не rect.
         if self.moving_right:
             self.x += self.settings.ship_speed
         if self.moving_left:
