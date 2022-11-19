@@ -13,6 +13,7 @@ class AlienInvasion:
     def __init__(self):
         """Инициализирует игру и создает игровые ресурсы."""
         pygame.init()
+        self.shot = pygame.mixer.Sound('src/space-invaders-sounds/shoot/shoot.wav')
         self.settings = Settings()
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.settings.screen_width = self.screen.get_rect().width
@@ -49,7 +50,9 @@ class AlienInvasion:
         elif event.key == pygame.K_q:
             sys.exit()
         elif event.key == pygame.K_SPACE:
-            self._fire_bullet()
+            if len(self.bullets) < self.settings.bullets_allowed:
+                self.shot.play()
+                self._fire_bullet()
 
     def _check_keyup_events(self, event):
         """Реагирует на отпускание клавиш."""
@@ -60,9 +63,8 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """Создание нового снаряда и включение его в группу bullets."""
-        if len(self.bullets) < self.settings.bullets_allowed:
-            new_bullet = Bullet(self)
-            self.bullets.add(new_bullet)
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
 
     def _update_bullets(self):
         """Обновляет позиции снарядов и уничтожает старые снаряды."""
