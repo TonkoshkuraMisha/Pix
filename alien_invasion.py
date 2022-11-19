@@ -16,6 +16,7 @@ class AlienInvasion:
         self.shot = pygame.mixer.Sound('src/space-invaders-sounds/shoot/shoot.wav')
         self.settings = Settings()
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.bg_img = pygame.image.load('src/img/DeepSpace.jpg')
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Space Invaders")
@@ -77,8 +78,8 @@ class AlienInvasion:
 
     def _update_screen(self):
         """Обновляет изображения на экране и отображает новый экран."""
-        self.screen.fill(self.settings.bg_color)
-        # self.screen.blit(settings.bg, (0, 0))
+        # self.screen.fill(self.settings.bg_color)
+        self.screen.blit(self.bg_img, self.bg_img.get_rect())
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
