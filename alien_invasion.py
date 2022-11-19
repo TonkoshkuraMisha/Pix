@@ -5,7 +5,7 @@ from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from sound import Sound
-
+from alien import Alien
 
 class AlienInvasion:
     """Класс для управления ресурсами и поведением игры."""
@@ -22,6 +22,7 @@ class AlienInvasion:
         pygame.display.set_caption("Space Invaders")
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
         self.sound = Sound()
 
     def run_game(self):
@@ -30,6 +31,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            # self._update_aliens()
             self._update_screen()
 
     def _check_events(self):
