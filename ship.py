@@ -19,7 +19,7 @@ class Ship():
         # Каждый новый корабль появляется у нижнего края экрана.
         # self.rect.midbottom = self.screen_rect.midbottom
         self.rect.centerx = self.screen_rect.centerx
-        self.rect.centery = self.screen_rect.centery + 350
+        self.rect.centery = 1.875*self.screen_rect.centery
 
 
         # Сохранение вещественной координаты центра корабля.
