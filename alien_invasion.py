@@ -7,6 +7,7 @@ from bullet import Bullet
 from sound import Sound
 from alien import Alien
 
+
 class AlienInvasion:
     """Класс для управления ресурсами и поведением игры."""
 

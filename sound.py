@@ -9,7 +9,7 @@ class Sound():
         # Starting the mixer
         mixer.init()
         # Loading the song
-        mixer.music.load("src/sounds/spaceinvaders1.mp3")
+        mixer.music.load("src/sounds/Elevator-music.mp3")
         # Setting the volume
         mixer.music.set_volume(0.1)
         # Start playing the song

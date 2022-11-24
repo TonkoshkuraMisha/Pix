@@ -19,7 +19,7 @@ class Ship():
         # Каждый новый корабль появляется у нижнего края экрана.
         # self.rect.midbottom = self.screen_rect.midbottom
         self.rect.centerx = self.screen_rect.centerx
-        self.rect.centery = 1.875*self.screen_rect.centery
+        self.rect.centery = 1.6*self.screen_rect.centery
 
 
         # Сохранение вещественной координаты центра корабля.
@@ -31,9 +31,9 @@ class Ship():
 
     def update(self):
         # Обновляется атрибут x, не rect.
-        if self.moving_right and self.rect.right < self.screen_rect.right:
+        if self.moving_right and self.rect.right < 0.75*self.screen_rect.right:
             self.x += self.settings.ship_speed
-        if self.moving_left and self.rect.left > 0:
+        if self.moving_left and self.rect.left > 0.25*self.screen_rect.right:
             self.x -= self.settings.ship_speed
         # Обновление атрибута rect на основании self.x.
         self.rect.x = self.x
