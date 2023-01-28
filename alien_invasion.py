@@ -62,7 +62,7 @@ class AlienInvasion:
         elif event.key == pygame.K_q:
             sys.exit()
         elif event.key == pygame.K_SPACE:
-            if len(self.bullets) < self.settings.bullets_allowed:
+            if len(self.bullets) < self.settings.bullets_allowed and self.stats.game_active:
                 self.shot.play()
                 self._fire_bullet()
 
@@ -151,18 +151,18 @@ class AlienInvasion:
 
     def _create_fleet(self):
         """Создание флота вторжения"""
-        # Создание пришельца и вычисление количества пришельцев в ряду.
-        # Интервал между соседними пришельцами равен ширине пришельца.
+        """Создание пришельца и вычисление количества пришельцев в ряду.
+        Интервал между соседними пришельцами равен ширине пришельца."""
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
-        available_space_x = self.settings.screen_width - (2 * alien_width)
-        number_aliens_x = available_space_x // (2 * alien_width)
+        # available_space_x = self.settings.screen_width - (2 * alien_width)
+        number_aliens_x = 11 #available_space_x // (2 * alien_width)
 
         """Определяет количество рядов, помещающихся на экран."""
-        ship_height = self.ship.rect.height
-        available_space_y = (self.settings.screen_height -
-                             (3 * alien_height) - ship_height)
-        number_rows = available_space_y // (2 * alien_height)
+        # ship_height = self.ship.rect.height
+        # available_space_y = (self.settings.screen_height -
+                             # (3 * alien_height) - ship_height)
+        number_rows = 5 # available_space_y // (2 * alien_height)
 
         # Создание флота вторжения.
         for row_number in range(number_rows):
@@ -184,7 +184,8 @@ class AlienInvasion:
         self.screen.blit(self.bg_img, self.bg_img.get_rect())
         self.ship.blitme()
         for bullet in self.bullets.sprites():
-            bullet.draw_bullet()
+            if self.stats.game_active:
+                bullet.draw_bullet()
         self.aliens.draw(self.screen)
 
         pygame.display.flip()
