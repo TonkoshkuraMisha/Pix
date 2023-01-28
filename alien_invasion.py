@@ -8,6 +8,7 @@ from bullet import Bullet
 from sound import Sound
 from alien import Alien
 from game_stats import GameStats
+from button import Button
 
 
 class AlienInvasion:
@@ -30,6 +31,8 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
         self.sound = Sound()
+        # Создание кнопки Play
+        self.play_button = Button(self, "Play")
 
     def run_game(self):
         """Запуск основного цикла игры."""
@@ -52,6 +55,14 @@ class AlienInvasion:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
+
+    def _check_play_button(self, mouse_pos):
+        """Запускает новую игру при нажатии кнопки Play."""
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.game_active = True
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
@@ -156,13 +167,13 @@ class AlienInvasion:
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
         # available_space_x = self.settings.screen_width - (2 * alien_width)
-        number_aliens_x = 11 #available_space_x // (2 * alien_width)
+        number_aliens_x = 11  # available_space_x // (2 * alien_width)
 
         """Определяет количество рядов, помещающихся на экран."""
         # ship_height = self.ship.rect.height
         # available_space_y = (self.settings.screen_height -
-                             # (3 * alien_height) - ship_height)
-        number_rows = 5 # available_space_y // (2 * alien_height)
+        # (3 * alien_height) - ship_height)
+        number_rows = 5  # available_space_y // (2 * alien_height)
 
         # Создание флота вторжения.
         for row_number in range(number_rows):
@@ -187,6 +198,9 @@ class AlienInvasion:
             if self.stats.game_active:
                 bullet.draw_bullet()
         self.aliens.draw(self.screen)
+        # Кнопка Play отображается в том случае, если игра неактивна.
+        if not self.stats.game_active:
+            self.play_button.draw_button()
 
         pygame.display.flip()
 
